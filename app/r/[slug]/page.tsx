@@ -47,41 +47,47 @@ export default function ReviewPage({
     }
   }
 
+  const formatTag = (tag: string) => {
+    return tag.charAt(0).toLowerCase() + tag.slice(1)
+  }
+
   const generateReview = () => {
     if (selectedTags.length === 0) {
-      return "Très bonne expérience, je recommande !"
+      return "Très bonne expérience, je recommande."
     }
 
     const openings = [
-      'Très bonne expérience.',
-      'Super moment.',
-      'Excellente expérience.',
-      'Franchement top.',
-      'Je recommande.'
+      "Très bonne expérience.",
+      "Super moment.",
+      "Excellente expérience.",
+      "Franchement top.",
+      "Je recommande vivement."
     ]
 
     const endings = [
-      'Je recommande !',
-      'Je reviendrai avec plaisir.',
-      'À tester sans hésiter.',
-      'Merci encore !',
-      'Très satisfait.'
+      "Je recommande.",
+      "Je reviendrai avec plaisir.",
+      "À tester sans hésiter.",
+      "Merci encore !",
+      "Très satisfait."
     ]
 
     const opening = openings[Math.floor(Math.random() * openings.length)]
     const ending = endings[Math.floor(Math.random() * endings.length)]
 
-    const selectedText =
-      selectedTags.length === 1
-        ? selectedTags[0].toLowerCase()
-        : selectedTags
-            .slice(0, -1)
-            .map((tag) => tag.toLowerCase())
-            .join(', ') +
-          ' et ' +
-          selectedTags[selectedTags.length - 1].toLowerCase()
+    const formattedTags = selectedTags.map(tag => formatTag(tag))
 
-    return `${opening} J’ai apprécié ${selectedText}. ${ending}`
+    let middle = ""
+
+    if (formattedTags.length === 1) {
+      middle = `J’ai apprécié ${formattedTags[0]}.`
+    } else if (formattedTags.length === 2) {
+      middle = `J’ai apprécié ${formattedTags[0]} et ${formattedTags[1]}.`
+    } else {
+      middle = `J’ai apprécié ${formattedTags.slice(0, -1).join(", ")} et ${formattedTags.slice(-1)}.`
+    }
+
+    return `${opening} ${middle} ${ending}`
   }
 
   const copyReview = async () => {
