@@ -212,7 +212,7 @@ export default function ReviewPage({
                 value={reviewText}
                 onChange={(e) => setReviewText(e.target.value)}
                 placeholder="Votre avis apparaîtra ici..."
-                className="w-full border rounded-xl p-3 h-28 text-sm"
+                className="w-full h-28 p-3 rounded-xl border bg-white text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-black/10"
               />
             </div>
 
@@ -260,7 +260,7 @@ export default function ReviewPage({
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Dites-nous ce qui pourrait être amélioré..."
-                  className="border p-3 rounded-xl w-full h-28"
+                  className="w-full h-28 p-3 rounded-xl border bg-white text-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-black/10"
                 />
 
                 <button
